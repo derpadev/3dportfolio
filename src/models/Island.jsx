@@ -8,7 +8,7 @@ Title: Low-Poly Floating Island
 
 import { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
-import islandScene from "../assets/3d/low-poly_floating_island.glb?url";
+import islandScene from "../assets/3d/island.glb?url";
 import { a } from "@react-spring/three";
 
 const Island = (props) => {
@@ -19,10 +19,9 @@ const Island = (props) => {
   return (
     <a.group ref={islandRef} {...props}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
-        <mesh
-          geometry={nodes.Object_2.geometry}
-          material={materials.Material}
-        />
+        {/* <mesh geometry={nodes.Object_2.geometry} material={materials.Material}>
+          <meshStandardMaterial color="#009dc4" />
+        </mesh> */}
         <mesh
           geometry={nodes.Object_3.geometry}
           material={materials.Material_1}
@@ -39,10 +38,10 @@ const Island = (props) => {
           geometry={nodes.Object_6.geometry}
           material={materials.Material_7}
         />
-        <mesh
+        {/* <mesh
           geometry={nodes.Object_7.geometry}
           material={materials.Material_4}
-        />
+        /> */}
         <mesh
           geometry={nodes.Object_8.geometry}
           material={materials.Material_5}
