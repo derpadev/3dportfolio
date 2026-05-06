@@ -9,6 +9,7 @@ Title: old_monitor
 import React, { useState } from "react";
 import * as THREE from "three";
 import { useGLTF, useCursor, Billboard, Html } from "@react-three/drei";
+import { FaUser } from "react-icons/fa";
 
 import monitorScene from "../assets/3d/monitor.glb?url";
 
@@ -19,7 +20,7 @@ const OVERLAY_SCALE = MONITOR_SCALE * 1.018;
 /** Skip raycasts so the hover overlay never steals the pointer from the main mesh. */
 const noopRaycast = () => {};
 
-const Monitor = ({ onOpen, ...props }) => {
+const Monitor = ({ onOpen, bannerVisible = true, ...props }) => {
   const { nodes, materials } = useGLTF(monitorScene);
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
@@ -40,7 +41,7 @@ const Monitor = ({ onOpen, ...props }) => {
         onOpen?.();
       }}
     >
-      {hovered && (
+      {bannerVisible ? (
         <Billboard position={[0, 1.25, 0]} follow>
           <Html
             center
@@ -51,12 +52,13 @@ const Monitor = ({ onOpen, ...props }) => {
               whiteSpace: "nowrap",
             }}
           >
-            <div className="inline-block max-w-none whitespace-nowrap rounded-md bg-neutral-900/90 px-3 py-1 text-xs font-medium text-white shadow-md backdrop-blur-sm border border-white">
-              what i do
+            <div className="inline-flex max-w-none items-center gap-1.5 whitespace-nowrap rounded-md bg-neutral-900/90 px-3 py-1 text-xs font-medium text-white shadow-md backdrop-blur-sm">
+              <FaUser className="h-3.5 w-3.5 shrink-0 opacity-95" aria-hidden />
+              <span>About Me</span>
             </div>
           </Html>
         </Billboard>
-      )}
+      ) : null}
       <mesh
         castShadow
         receiveShadow

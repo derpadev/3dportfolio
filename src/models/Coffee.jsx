@@ -11,7 +11,7 @@ import { useGLTF, useCursor, Billboard, Html } from "@react-three/drei";
 
 import coffeeScene from "../assets/3d/coffee.glb?url";
 
-const Coffee = ({ onOpen, ...props }) => {
+const Coffee = ({ onOpen, bannerVisible = true, ...props }) => {
   const { nodes, materials } = useGLTF(coffeeScene);
   const [hovered, setHovered] = useState(false);
   useCursor(hovered);
@@ -32,8 +32,7 @@ const Coffee = ({ onOpen, ...props }) => {
         onOpen?.();
       }}
     >
-      {" "}
-      {hovered && (
+      {bannerVisible ? (
         <Billboard position={[0, 2.25, 0]} follow>
           <Html
             center
@@ -45,11 +44,11 @@ const Coffee = ({ onOpen, ...props }) => {
             }}
           >
             <div className="inline-block max-w-none whitespace-nowrap rounded-md bg-neutral-900/90 px-3 py-1 text-xs font-medium text-white shadow-md backdrop-blur-sm border border-white">
-                cafes i like
+              cafes i like
             </div>
           </Html>
         </Billboard>
-      )}
+      ) : null}
       <group rotation={[-1.479, -0.062, 0.075]}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <mesh
