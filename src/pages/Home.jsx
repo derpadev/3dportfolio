@@ -6,6 +6,7 @@ import Modal from "../components/Modal";
 import { SCENE_MODALS } from "../components/modalContent/sceneModalsRegistry";
 import Island from "../models/Island";
 import Coffee from "../models/Coffee";
+import Chest from "../models/Chest";
 import Book from "../models/Book";
 import Monitor from "../models/Monitor";
 import Sky from "../models/Sky";
@@ -53,21 +54,29 @@ const Home = () => {
             target={[0, 0, 0]}
             enablePan={false}
 
-            enableZoom={false}
-            minPolarAngle={Math.PI / 2 - 0.45}
-            maxPolarAngle={1.3}
+            // enableZoom={false}
+            // minPolarAngle={Math.PI / 2 - 0.45}
+            // maxPolarAngle={1.3}
 
             // debugging
-            // minPolarAngle={-Math.PI / 2}
-            // maxPolarAngle={Math.PI / 2 }
+            minPolarAngle={-Math.PI / 2}
+            maxPolarAngle={Math.PI / 2 }
           />
           <directionalLight position={[5, 10, 5]} intensity={1.2} />
           <ambientLight intensity={0.7} />
-          <Sky />
+          <Sky position={[0, 3, 0]} scale={[2, 2, 2]}/>
+          <mesh
+            position={[0, -1, 0]}
+            rotation={[0, Math.PI + 1, 0]}
+            receiveShadow
+          >
+            <boxGeometry args={[100, 1, 100]} />
+            <meshStandardMaterial color="#2ED9FF" roughness={0.85} metalness={0.05} />
+          </mesh>
           <Monitor
-            position={[-3, 1, 0]}
+            position={[-3, 0.45, 1]}
             rotation={[0, Math.PI + 0.3, 0]}
-            scale={1}
+            scale={1.75}
             bannerVisible={bannerVisible}
             onOpen={() => setActiveModal("monitor")}
           />
@@ -85,11 +94,18 @@ const Home = () => {
             rotation={islandRotation}
           />
           <Book
-            position={[0.8, 0.05, -1.8]}
+            position={[1.5, 0.05, -1.8]}
             rotation={[0, 0.5, 0]}
             scale={0.005}
             bannerVisible={bannerVisible}
             onOpen={() => setActiveModal("book")}
+          />
+          <Chest
+            position={[-2, 0.9, -3]}
+            rotation={[0, 3, 0]}
+            scale={0.5}
+            bannerVisible={bannerVisible}
+            onOpen={() => setActiveModal("chest")}
           />
         </Suspense>
       </Canvas>

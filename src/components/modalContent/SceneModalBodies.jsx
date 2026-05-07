@@ -1,53 +1,76 @@
 import React, { useState } from "react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { HiOutlineExternalLink } from "react-icons/hi";
+import { MdEmail } from "react-icons/md";
+import { SiLeetcode } from "react-icons/si";
 
-const ExternalLinkIcon = ({ className = "h-4 w-4" }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-    aria-hidden
-  >
-    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-    <polyline points="15 3 21 3 21 9" />
-    <line x1="10" x2="21" y1="14" y2="3" />
-  </svg>
-);
+const PROFILE_IMAGE_SRC = `${import.meta.env.BASE_URL}profile.png`;
 
 const EXPERIENCE = [
   {
-    title: "Front-End Developer",
-    company: "Your Company",
-    range: "2023 — Present",
+    title: "Software Quality Assurance Intern",
+    company: "Toshiba",
+    range: "June 2026 - August 2026",
     description:
-      "Ship responsive product UI in React, own component patterns, and collaborate on design systems while keeping bundles lean and animations smooth.",
-    accent: "from-indigo-500/30 to-violet-600/20",
+      "Incoming Intern at Toshiba. I will be working on the Quality Assurance team to help test and improve the quality of the software.",
+    logo: "/company-logos/toshiba_logo.jfif",
   },
   {
-    title: "UI Engineer (Contract)",
-    company: "Studio / Agency",
-    range: "2021 — 2023",
+    title: "Cyber Security Intern",
+    company: "Bay Area Rapid Transit (BART)",
+    range: "June 2024 - August 2024",
     description:
-      "Built marketing sites and interactive demos with a focus on accessibility, performance budgets, and handoff from Figma to production code.",
-    accent: "from-sky-500/25 to-indigo-600/20",
+      "Cybersecurity intern supporting BART’s enterprise environment: automated alert-handling workflows with Python/Tines/Elastic, performed vulnerability assessments, and built Ansible-based patching automation to improve security coverage, consistency, and response speed across large-scale systems.",
+    logo: "/company-logos/bart_logo.jfif",
   },
 ];
 
 const INTERESTS = [
-  "Interactive 3D on the web",
-  "Design systems",
-  "Coffee & reading",
-  "Photography",
+  "Web Development",
+  "Cafe Hopping",
+  "Dancing",
+  "Gaming",
+  "Horror Movies",
 ];
 
 const SOCIALS = [
-  { label: "GitHub", href: "https://github.com" },
-  { label: "LinkedIn", href: "https://linkedin.com" },
-  { label: "Twitter / X", href: "https://twitter.com" },
+  { label: "GitHub", href: "https://github.com/derpadev", icon: FaGithub },
+  { label: "LinkedIn", href: "https://linkedin.com/in/devinhua", icon: FaLinkedin },
+  { label: "LeetCode", href: "https://leetcode.com/u/devinhua004/", icon: SiLeetcode },
+  { label: "Email", href: "mailto:devinhua004@gmail.com", icon: MdEmail },
+];
+
+const PROJECTS = [
+  {
+    title: "Portfolio Website",
+    caption: "This 3D portfolio!",
+    description:
+      "A React and Three.js portfolio with interactive scene objects that open context-rich modals for experience, about, and projects.",
+    tags: ["React", "Three.js", "Tailwind CSS"],
+    href: "https://github.com/derpadev",
+    preview:
+      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80",
+  },
+  {
+    title: "The Spoon Cafe",
+    caption: "React + Tailwind website for a local dessert cafe",
+    description:
+      "Designed, built, and now maintain a responsive dessert cafe website that showcases 70+ menu items and improves local online visibility. I integrated Google Analytics to track behavior across 600+ monthly users, then used those insights to drive iterative UI and accessibility improvements that increased engagement. I also structured menu content with JSON to make recurring updates like new items and pricing changes fast, consistent, and local.",
+    tags: ["React", "Tailwind CSS", "JavaScript", "JSON", "Google Analytics"],
+    href: "https://thespoondessert.com",
+    preview:
+      "/project-previews/thespoon.png",
+  },
+  {
+    title: "StudyHub",
+    caption: "Reddit-clone social platform with realtime interactions",
+    description:
+      "Built a Reddit-style social app where users create posts, join communities, and interact through likes and threaded comments with realtime UI updates. Integrated Supabase Auth and backend services for secure authentication, session handling, and scalable storage, enforced row-level security policies for role-based data protection, and designed Postgres schemas for profiles, posts, comments, and communities.",
+    tags: ["React", "Tailwind CSS", "Supabase", "JavaScript", "PostgreSQL"],
+    href: "https://social-media-website-sage-kappa.vercel.app/",
+    preview:
+      "/project-previews/studyhub.png",
+  },
 ];
 
 function SectionLabel({ children }) {
@@ -85,13 +108,18 @@ function ExperienceTimeline() {
                     {job.description}
                   </p>
                 </div>
-                <div
-                  className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br ${job.accent} shadow-inner sm:h-16 sm:w-16`}
-                  aria-hidden
-                >
-                  <span className="text-lg font-bold text-white/40">
-                    {job.company.charAt(0)}
-                  </span>
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl border border-white/10 bg-white/5 shadow-inner sm:h-16 sm:w-16">
+                  {job.logo ? (
+                    <img
+                      src={job.logo}
+                      alt={`${job.company} logo`}
+                      className="h-full w-full object-contain p-1.5"
+                    />
+                  ) : (
+                    <span className="text-lg font-bold text-white/40">
+                      {job.company.charAt(0)}
+                    </span>
+                  )}
                 </div>
               </div>
             </li>
@@ -110,26 +138,21 @@ function ProfileCard() {
       <div className="relative h-28 w-28 shrink-0 overflow-hidden rounded-full border-2 border-white/15 bg-gradient-to-br from-indigo-500/35 via-slate-800 to-violet-700/40 shadow-[0_0_36px_rgba(99,102,241,0.22)]">
         {!photoFailed ? (
           <img
-            src="/profile.jpg"
-            alt=""
+            src={PROFILE_IMAGE_SRC}
+            alt="Profile picture of Devin Hua"
             className="h-full w-full object-cover"
             onError={() => setPhotoFailed(true)}
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center text-lg font-semibold tracking-wide text-white/55">
-            You
+            DH
           </div>
         )}
       </div>
       <div className="min-w-0 flex-1 space-y-2">
-        <p className="text-lg font-semibold text-white">Your name</p>
+        <p className="text-lg font-semibold text-white">Devin Hua</p>
         <p className="text-sm leading-relaxed text-slate-400">
-          Short introduction — who you are, what you build, and what you care
-          about. Swap this copy and drop{" "}
-          <span className="font-medium text-slate-300">profile.jpg</span> into
-          the{" "}
-          <span className="font-medium text-slate-300">public</span> folder for
-          your photo.
+          Computer Engineering student focused on becoming software engineer. I enjoy building web applications using modern technologies and frameworks with a strong engineering fundamentals. I'm especially motivated by building software that has meaninful impact in education and social good.
         </p>
       </div>
     </section>
@@ -157,21 +180,21 @@ function SocialsSection() {
   return (
     <section className="space-y-4">
       <SectionLabel>Socials</SectionLabel>
-      <ul className="space-y-2">
-        {SOCIALS.map(({ label, href }) => (
-          <li key={label}>
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center justify-between gap-3 rounded-xl border border-white/[0.1] bg-white/[0.04] px-4 py-3 text-sm font-medium text-slate-200 transition-all hover:border-indigo-400/35 hover:bg-white/[0.07]"
-            >
-              <span>{label}</span>
-              <ExternalLinkIcon className="h-4 w-4 text-slate-500 transition-colors group-hover:text-indigo-300" />
-            </a>
-          </li>
+      <div className="flex flex-wrap items-center gap-3 text-sm text-slate-300">
+        <p className="font-medium text-slate-200">Lets connect!</p>
+        {SOCIALS.map(({ label, href, icon: Icon }) => (
+          <a
+            key={label}
+            href={href}
+            target={href.startsWith("mailto:") ? undefined : "_blank"}
+            rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+            aria-label={label}
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-white/5 text-slate-300 transition-all hover:border-indigo-400/50 hover:text-indigo-300"
+          >
+            <Icon className="h-5 w-5" aria-hidden />
+          </a>
         ))}
-      </ul>
+      </div>
     </section>
   );
 }
@@ -231,6 +254,58 @@ export function CoffeeModalBody() {
           </p>
         </div>
       </div>
+    </div>
+  );
+}
+
+/** Chest - stacked project cards */
+export function ChestModalBody() {
+  return (
+    <div className="space-y-6 pb-2">
+      {PROJECTS.map((project) => (
+        <article
+          key={project.title}
+          className="overflow-hidden rounded-2xl border border-white/[0.1] bg-white/[0.04] shadow-[0_12px_36px_rgba(0,0,0,0.28)] transition-all duration-300 hover:border-indigo-400/35 hover:shadow-[0_0_28px_rgba(129,140,248,0.2)]"
+        >
+          <img
+            src={project.preview}
+            alt={`${project.title} preview`}
+            className="h-56 w-full object-cover sm:h-64"
+            loading="lazy"
+          />
+          <div className="space-y-4 p-5 sm:p-6">
+            <div className="flex items-start justify-between gap-3">
+              <div className="space-y-1">
+                <h3 className="text-lg font-semibold text-white sm:text-xl">
+                  {project.title}
+                </h3>
+                <p className="text-sm text-indigo-300">{project.caption}</p>
+              </div>
+              <a
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${project.title}`}
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/15 bg-white/5 text-slate-300 transition-all hover:border-indigo-400/55 hover:text-indigo-200"
+              >
+                <HiOutlineExternalLink className="h-5 w-5" aria-hidden />
+              </a>
+            </div>
+            <p className="text-sm leading-relaxed text-slate-400">
+              {project.description}
+            </p>
+            <ul className="flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <li key={tag}>
+                  <span className="inline-flex rounded-full border border-white/10 bg-white/[0.06] px-3 py-1 text-xs text-slate-300">
+                    {tag}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </article>
+      ))}
     </div>
   );
 }

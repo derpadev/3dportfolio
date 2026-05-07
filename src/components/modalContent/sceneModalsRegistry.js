@@ -1,5 +1,6 @@
 import {
   BookModalBody,
+  ChestModalBody,
   CoffeeModalBody,
   MonitorModalBody,
 } from "./SceneModalBodies";
@@ -7,9 +8,9 @@ import {
 /** Keys match `setActiveModal("key")` on scene models. */
 export const SCENE_MODALS = {
   monitor: {
-    title: "About me",
+    title: "About Me",
     subtitle:
-      "Who I am, what I enjoy, and where to find me online — personalize photo, copy, interests, and links.",
+      "Who I am, what I enjoy, and where to find me online!",
     Body: MonitorModalBody,
   },
   book: {
@@ -23,5 +24,11 @@ export const SCENE_MODALS = {
     subtitle:
       "Spots for coffee, focus, or a quiet read — personalize with your favorites.",
     Body: CoffeeModalBody,
+  },
+  chest: {
+    title: "My Projects",
+    subtitle:
+      "A collection of projects with previews, stack details, and external links.",
+    Body: ChestModalBody,
   },
 };
