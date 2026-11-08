@@ -5,6 +5,10 @@
 :root {
   --blue-rgb: 237 245 255;
   --green-rgb: 125 161 35;
+  --modal-bg: #123f42;
+  --modal-text: #ffffff;
+  --modal-text-secondary: #e0f0e9;
+  --modal-accent: #f2d49b;
 }
 
 body {

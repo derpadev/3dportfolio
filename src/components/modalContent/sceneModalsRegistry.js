@@ -10,13 +10,13 @@ export const SCENE_MODALS = {
   monitor: {
     title: "About Me",
     subtitle:
-      "Who I am, what I enjoy, and where to find me online!",
+      "I'm a developer, mentor, and builder.   ",
     Body: MonitorModalBody,
   },
   book: {
     title: "My Experience",
     subtitle:
-      "Aspiring software engineer with a passion for building web applications and software solutions.",
+      "Real-world experience in software development, automation, and problem solving.",
     Body: BookModalBody,
   },
   coffee: {
@@ -28,7 +28,7 @@ export const SCENE_MODALS = {
   chest: {
     title: "My Projects",
     subtitle:
-      "A collection of projects with previews, stack details, and external links.",
+      "A collection of projects I've designed, built, and shipped.",
     Body: ChestModalBody,
   },
 };

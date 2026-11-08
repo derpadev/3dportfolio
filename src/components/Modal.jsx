@@ -37,11 +37,11 @@ const Modal = ({
     >
       {/* Dim + blur island background */}
       <div
-        className="absolute inset-0 bg-slate-950/65 backdrop-blur-md backdrop-saturate-150"
+        className="absolute inset-0 bg-[#123F42]/70 backdrop-blur-md backdrop-saturate-150"
         aria-hidden
       />
       <div
-        className="scene-modal-panel relative flex max-h-[min(85vh,880px)] w-full max-w-[min(100%,42rem)] flex-col overflow-hidden rounded-[20px] border border-white/[0.12] bg-gradient-to-br from-[#0f172a]/92 via-[#0c1222]/94 to-[#0a0a0f]/96 text-white shadow-[0_25px_60px_-15px_rgba(0,0,0,0.65),0_0_0_1px_rgba(255,255,255,0.06)_inset,0_1px_0_rgba(255,255,255,0.08)_inset] backdrop-blur-2xl"
+        className="scene-modal-panel relative flex max-h-[min(85vh,880px)] w-full max-w-[min(100%,42rem)] flex-col overflow-hidden rounded-[20px] border border-[#E0F0E9]/20 bg-[#123F42]/95 text-[#FFFFFF] shadow-[0_25px_60px_-15px_rgba(18,63,66,0.65),0_0_0_1px_rgba(224,240,233,0.08)_inset,0_1px_0_rgba(242,212,155,0.12)_inset] backdrop-blur-2xl"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
@@ -49,19 +49,19 @@ const Modal = ({
         aria-describedby={subtitle ? subtitleId : undefined}
         style={{ fontFamily: '"Inter", system-ui, sans-serif' }}
       >
-        <header className="shrink-0 border-b border-white/[0.08] px-6 py-6 sm:px-8 sm:py-7">
+        <header className="shrink-0 border-b border-[#E0F0E9]/15 px-6 py-6 sm:px-8 sm:py-7">
           <div className="flex items-start justify-between gap-4">
             <div className="min-w-0 flex-1 pr-2">
               <h2
                 id={titleId}
-                className="text-lg font-semibold tracking-tight text-white sm:text-xl"
+                className="text-lg font-semibold tracking-tight text-[#FFFFFF] sm:text-xl"
               >
                 {title}
               </h2>
               {subtitle ? (
                 <p
                   id={subtitleId}
-                  className="mt-2 text-sm leading-relaxed text-slate-400"
+                  className="mt-2 text-sm leading-relaxed text-[#E0F0E9]"
                 >
                   {subtitle}
                 </p>
@@ -70,7 +70,7 @@ const Modal = ({
             <button
               type="button"
               aria-label="Close modal"
-              className="group flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-slate-300 shadow-sm transition-all duration-200 hover:scale-105 hover:border-indigo-400/35 hover:bg-white/[0.1] hover:text-white hover:shadow-[0_0_20px_rgba(129,140,248,0.25)] focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400/60 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0c1222]"
+              className="group flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-[#E0F0E9]/25 bg-[#E0F0E9]/10 text-[#FFFFFF] shadow-sm transition-all duration-200 hover:scale-105 hover:border-[#F2D49B]/55 hover:bg-[#F2D49B]/15 hover:text-[#F2D49B] hover:shadow-[0_0_20px_rgba(242,212,155,0.35)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F2D49B]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#123F42]"
               onClick={onClose}
             >
               <svg
