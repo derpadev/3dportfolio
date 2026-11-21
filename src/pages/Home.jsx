@@ -13,7 +13,7 @@ import Book from "../models/Book";
 import Monitor from "../models/Monitor";
 import Tree from "../models/Tree";
 import Sky from "../models/Sky";
-
+import Anteater from "../models/Anteater";
 /** Set true to free-fly with OrbitControls (zoom / pan / orbit). */
 const DEBUG_CAMERA = false;
 
@@ -27,13 +27,22 @@ function MouseLookCamera({
   const { camera, pointer } = useThree();
   const lookAt = useRef(new THREE.Vector3(...baseLookAt));
   const desired = useRef(new THREE.Vector3(...baseLookAt));
+  const base = useRef(new THREE.Vector3(...baseLookAt));
+  const right = useRef(new THREE.Vector3());
+  const up = useRef(new THREE.Vector3());
+  const forward = useRef(new THREE.Vector3());
 
   useFrame(() => {
-    desired.current.set(
-      baseLookAt[0] + pointer.x * lookRange,
-      baseLookAt[1] + pointer.y * lookRange * 0.45,
-      baseLookAt[2]
-    );
+    // Screen-aligned axes from the resting view so cursor right/up = look right/up
+    forward.current.subVectors(base.current, camera.position).normalize();
+    right.current.crossVectors(forward.current, camera.up).normalize();
+    up.current.crossVectors(right.current, forward.current).normalize();
+
+    desired.current
+      .copy(base.current)
+      .addScaledVector(right.current, pointer.x * lookRange)
+      .addScaledVector(up.current, pointer.y * lookRange * 0.45);
+
     lookAt.current.lerp(desired.current, ease);
     camera.lookAt(lookAt.current);
   });
@@ -114,7 +123,7 @@ const Home = () => {
             position={islandPosition}
             rotation={islandRotation}
           />
-          <Tree position={[0, -3, 3]} scale={100} />
+          <Tree position={[6, -3, 0]} rotation={[0, 3, 0]} scale={100} />
           <Book
             position={[-1.5, 0.2, -1.2]}
             rotation={[0, -0.2, 0]}
@@ -128,6 +137,13 @@ const Home = () => {
             scale={0.7}
             bannerVisible={bannerVisible}
             onOpen={() => setActiveModal("chest")}
+          />
+          <Anteater
+            position={[3.5, -1.1, 2.5]}
+            rotation={[0, 3.5, 0]}
+            scale={1}
+            bannerVisible={bannerVisible}
+            onOpen={() => setActiveModal("anteater")}
           />
         </Suspense>
       </Canvas>

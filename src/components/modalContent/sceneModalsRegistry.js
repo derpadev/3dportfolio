@@ -1,4 +1,5 @@
 import {
+  AnteaterModalBody,
   BookModalBody,
   ChestModalBody,
   CoffeeModalBody,
@@ -30,5 +31,11 @@ export const SCENE_MODALS = {
     subtitle:
       "A collection of projects I've designed, built, and shipped.",
     Body: ChestModalBody,
+  },
+  anteater: {
+    title: "Education",
+    subtitle:
+      "Academic background and what I'm studying.",
+    Body: AnteaterModalBody,
   },
 };

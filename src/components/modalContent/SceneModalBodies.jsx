@@ -313,6 +313,76 @@ export function CoffeeModalBody() {
   );
 }
 
+const EDUCATION = [
+  {
+    school: "University of California, Irvine CA",
+    degree: "B.S. Computer Engineering",
+    range: "September 2024 - June 2027",
+    details:
+      "Relevant Coursework: Data Structures and Algorithms, Computer Organization, Operating Systems, Computer Networks, Computer Architecture, Software Engineering, Database Systems, Artificial Intelligence, Machine Learning, and more.",
+    logo: "/company-logos/uci_logo.png",
+    initials: "UCI",
+  },
+  {
+    school: "College of Alameda, Alameda CA",
+    degree: "A.A. Liberal Arts/Natural Sciences",
+    range: "May 2022 - May 2024",
+    details:
+      "Studied mathematics and computer science, to prepare for transfer to a four-year institution.",
+    logo: "/company-logos/college_of_alameda_logo.png",
+    initials: "COA",
+  },
+];
+
+/** Anteater — education / school */
+export function AnteaterModalBody() {
+  return (
+    <div className="space-y-8 pb-2">
+      <section className="space-y-5">
+        <SectionLabel>Education</SectionLabel>
+        <ul className="space-y-8">
+          {EDUCATION.map((entry) => (
+            <li
+              key={`${entry.school}-${entry.degree}`}
+              className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-6"
+            >
+              <div className="min-w-0 flex-1 space-y-1.5">
+                <p className="font-semibold text-[#FFFFFF]">{entry.degree}</p>
+                <p className="text-sm font-medium text-[#F2D49B]">
+                  {entry.school}
+                </p>
+                <p className="text-xs text-[#E0F0E9]/70">{entry.range}</p>
+                <p className="pt-1 text-sm leading-relaxed text-[#E0F0E9]">
+                  {entry.details}
+                </p>
+              </div>
+              <div
+                className={`flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl border shadow-inner sm:h-16 sm:w-16 ${
+                  entry.logo
+                    ? "border-[#E0F0E9]/25 bg-white"
+                    : "border-[#E0F0E9]/20 bg-[#E0F0E9]/10"
+                }`}
+              >
+                {entry.logo ? (
+                  <img
+                    src={entry.logo}
+                    alt={`${entry.school} logo`}
+                    className="h-full w-full object-contain p-1.5"
+                  />
+                ) : (
+                  <span className="text-sm font-bold text-[#E0F0E9]/50">
+                    {entry.initials}
+                  </span>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+  );
+}
+
 /** Chest - stacked project cards */
 export function ChestModalBody() {
   return (
