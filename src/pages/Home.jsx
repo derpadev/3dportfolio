@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
 import Loader from "../components/Loader";
 import Modal from "../components/Modal";
+import SceneTipPopup from "../components/SceneTipPopup";
 import { SCENE_MODALS } from "../components/modalContent/sceneModalsRegistry";
 import Island from "../models/Island";
 import Coffee from "../models/Coffee";
@@ -147,6 +148,8 @@ const Home = () => {
           />
         </Suspense>
       </Canvas>
+
+      <SceneTipPopup />
 
       <Modal
         open={!!config}
