@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
 import Loader from "../components/Loader";
 import Modal from "../components/Modal";
+import { useNavMenu } from "../components/NavMenuContext";
 import SceneTipPopup from "../components/SceneTipPopup";
 import { SCENE_MODALS } from "../components/modalContent/sceneModalsRegistry";
 import Island from "../models/Island";
@@ -71,11 +72,12 @@ const Home = () => {
 
   /** Which modal is open — keys must match `SCENE_MODALS` in sceneModalsRegistry.js */
   const [activeModal, setActiveModal] = useState(null);
+  const { menuOpen } = useNavMenu();
 
   const closeModal = () => setActiveModal(null);
   const config = activeModal ? SCENE_MODALS[activeModal] : null;
   const Body = config?.Body;
-  const bannerVisible = activeModal == null;
+  const bannerVisible = activeModal == null && !menuOpen;
 
   return (
     <section className="w-full h-screen relative">
